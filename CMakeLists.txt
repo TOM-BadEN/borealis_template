@@ -26,7 +26,6 @@ include(${BOREALIS_LIBRARY}/cmake/toolchain.cmake)
 # 项目信息 (★ 需要修改成你自己的 ★)
 # ============================================================================
 project(borealis_demo)  # 项目名称
-set(PROJECT_TITLEID "0100000000001000")      # Switch Title ID (16位十六进制，可自定义)
 set(VERSION_MAJOR "1")                       # 主版本号
 set(VERSION_MINOR "0")                       # 次版本号
 set(VERSION_ALTER "0")                       # 修订版本号
