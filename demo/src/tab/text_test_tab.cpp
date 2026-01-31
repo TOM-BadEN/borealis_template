@@ -29,7 +29,7 @@ static void registerSliderCell(brls::SliderCell* cell, float init, const std::st
 
 TextTestTab::TextTestTab()
 {
-    // Inflate the tab from the XML file
+    // 从 XML 文件加载 Tab 布局
     this->inflateFromXMLRes("xml/tabs/text_test.xml");
 
     registerSliderCell(width, 1.0f, "width", [this](float value)

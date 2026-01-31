@@ -15,10 +15,6 @@
     limitations under the License.
 */
 
-#if defined(ANDROID) || defined(IOS)
-#include <SDL2/SDL_main.h>
-#endif
-
 #include <borealis.hpp>
 #include <cstdlib>
 #include <string>
@@ -32,18 +28,13 @@
 #include "tab/text_test_tab.hpp"
 #include "activity/main_activity.hpp"
 
-#if defined(__PSV__) && defined(BOREALIS_USE_OPENGL)
-// Needed for the OpenGL driver to work
-extern "C" unsigned int sceLibcHeapSize = 2 * 1024 * 1024;
-#endif
-
-using namespace brls::literals; // for _i18n
+using namespace brls::literals; // 用于 _i18n 国际化
 
 int main(int argc, char* argv[])
 {
-    // We recommend to use INFO for real apps
+    // 解析命令行参数
     for (int i = 1; i < argc; i++) {
-        if (std::strcmp(argv[i], "-d") == 0) { // Set log level
+        if (std::strcmp(argv[i], "-d") == 0) { // 设置日志级别为 DEBUG
             brls::Logger::setLogLevel(brls::LogLevel::LOG_DEBUG);
         } else if (std::strcmp(argv[i], "-o") == 0) {
             const char* path = (i + 1 < argc) ? argv[++i] : "borealis.log";
@@ -53,7 +44,7 @@ int main(int argc, char* argv[])
         }
     }
 
-    // Init the app and i18n
+    // 初始化应用和国际化
     if (!brls::Application::init())
     {
         brls::Logger::error("Unable to init Borealis application");
@@ -64,10 +55,10 @@ int main(int argc, char* argv[])
 
     brls::Application::getPlatform()->setThemeVariant(brls::ThemeVariant::DARK);
 
-    // Have the application register an action on every activity that will quit when you press BUTTON_START
+    // 设置是否允许按 START 键全局退出
     brls::Application::setGlobalQuit(false);
 
-    // Register custom views (including tabs, which are views)
+    // 注册自定义视图 (Tab 也是视图)
     brls::Application::registerXMLView("CaptionedImage", CaptionedImage::create);
     brls::Application::registerXMLView("RecyclingListTab", RecyclingListTab::create);
     brls::Application::registerXMLView("ComponentsTab", ComponentsTab::create);
@@ -77,26 +68,22 @@ int main(int argc, char* argv[])
     brls::Application::registerXMLView("SettingsTab", SettingsTab::create);
     brls::Application::registerXMLView("TextTestTab", TextTestTab::create);
 
-    // Add custom values to the theme
+    // 添加自定义主题颜色
     brls::Theme::getLightTheme().addColor("captioned_image/caption", nvgRGB(2, 176, 183));
     brls::Theme::getDarkTheme().addColor("captioned_image/caption", nvgRGB(51, 186, 227));
 
-    // Add custom values to the style
+    // 添加自定义样式参数
     brls::getStyle().addMetric("about/padding_top_bottom", 50);
     brls::getStyle().addMetric("about/padding_sides", 75);
     brls::getStyle().addMetric("about/description_margin", 50);
 
-    // Create and push the main activity to the stack
+    // 创建并推送主 Activity 到栈中
     brls::Application::pushActivity(new MainActivity());
 
-    // Run the app
+    // 运行主循环
     while (brls::Application::mainLoop())
         ;
 
-    // Exit
+    // 退出
     return EXIT_SUCCESS;
 }
-
-#ifdef __WINRT__
-#include <borealis/core/main.hpp>
-#endif

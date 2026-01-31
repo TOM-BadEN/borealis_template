@@ -29,7 +29,7 @@ RecyclerCell* RecyclerCell::create()
     return new RecyclerCell();
 }
 
-// DATA SOURCE
+// 数据源
 
 int DataSource::numberOfSections(brls::RecyclerFrame* recycler)
 {
@@ -62,11 +62,11 @@ void DataSource::didSelectRowAt(brls::RecyclerFrame* recycler, brls::IndexPath i
     recycler->present(new PokemonView(pokemons[indexPath.row]));
 }
 
-// RECYCLER VIEW
+// 回收列表视图
 
 RecyclingListTab::RecyclingListTab()
 {
-    // Inflate the tab from the XML file
+    // 从 XML 文件加载 Tab 布局
     this->inflateFromXMLRes("xml/tabs/recycling_list.xml");
     
     pokemons.clear();
@@ -88,6 +88,6 @@ RecyclingListTab::RecyclingListTab()
 
 brls::View* RecyclingListTab::create()
 {
-    // Called by the XML engine to create a new RecyclingListTab
+    // XML 引擎调用此方法创建 RecyclingListTab
     return new RecyclingListTab();
 }

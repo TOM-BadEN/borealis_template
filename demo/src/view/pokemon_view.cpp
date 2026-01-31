@@ -28,7 +28,7 @@ bool dismissView(brls::View* view, PokemonView* pock)
 PokemonView::PokemonView(Pokemon pokemon)
     : pokemon(pokemon)
 {
-    // Inflate the tab from the XML file
+    // 从 XML 文件加载布局
     this->inflateFromXMLRes("xml/views/pokemon.xml");
 
     auto dismissAction = [this](View* view) {
@@ -67,6 +67,6 @@ PokemonView::PokemonView(Pokemon pokemon)
 
 brls::View* PokemonView::create()
 {
-    // Called by the XML engine to create a new ComponentsTab
+    // XML 引擎调用此方法创建 PokemonView
     return new PokemonView();
 }

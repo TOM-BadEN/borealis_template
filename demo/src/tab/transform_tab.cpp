@@ -23,7 +23,7 @@
 
 TransformTab::TransformTab()
 {
-    // Inflate the tab from the XML file
+    // 从 XML 文件加载 Tab 布局
     this->inflateFromXMLRes("xml/tabs/transform.xml");
 
     play->registerClickAction([this](...)

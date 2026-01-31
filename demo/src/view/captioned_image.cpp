@@ -18,16 +18,14 @@
 
 CaptionedImage::CaptionedImage()
 {
-    // Load the XML file and inflate ourself with its content
-    // The top-level Box in the XML corresponds to us, and every XML child
-    // is added to our children (and the attributes are applied)
-    // The CaptionedImage instance basically becomes what's written in the XML
+    // 从 XML 文件加载布局
+    // XML 中的顶层 Box 对应当前实例，所有 XML 子元素都会添加为子视图
     this->inflateFromXMLRes("xml/views/captioned_image.xml");
 
-    // The label stays hidden until focused, so hide it right away
+    // 标签默认隐藏，获得焦点时才显示
     this->label->hide([] {});
 
-    // Forward Image and Label XML attributes
+    // 转发 XML 属性到子视图
     this->forwardXMLAttribute("scalingType", this->image);
     this->forwardXMLAttribute("image", this->image);
     this->forwardXMLAttribute("focusUp", this->image);
@@ -44,7 +42,7 @@ CaptionedImage::CaptionedImage()
 
 void CaptionedImage::onChildFocusGained(brls::View* directChild, brls::View* focusedView)
 {
-    // Called when a child of ours gets focused, in that case it's the Image
+    // 子视图获得焦点时调用 (这里是 Image)
 
     Box::onChildFocusGained(directChild, focusedView);
 
@@ -53,7 +51,7 @@ void CaptionedImage::onChildFocusGained(brls::View* directChild, brls::View* foc
 
 void CaptionedImage::onChildFocusLost(brls::View* directChild, brls::View* focusedView)
 {
-    // Called when a child of ours losts focused, in that case it's the Image
+    // 子视图失去焦点时调用 (这里是 Image)
 
     Box::onChildFocusLost(directChild, focusedView);
 
@@ -62,6 +60,6 @@ void CaptionedImage::onChildFocusLost(brls::View* directChild, brls::View* focus
 
 brls::View* CaptionedImage::create()
 {
-    // Called by the XML engine to create a new CaptionedImage
+    // XML 引擎调用此方法创建 CaptionedImage
     return new CaptionedImage();
 }

@@ -18,13 +18,13 @@
 
 ComponentsTab::ComponentsTab()
 {
-    // Inflate the tab from the XML file
+    // 从 XML 文件加载 Tab 布局
     this->inflateFromXMLRes("xml/tabs/components.xml");
 
-    // Bind the button click to a method using the macro (just for the sake of showcasing it, it's overkill in this situation)
+    // 使用宏绑定按钮点击事件
     BRLS_REGISTER_CLICK_BY_ID("button_primary", this->onPrimaryButtonClicked);
 
-    // Get a handle to the button and register the action directly
+    // 获取按钮引用并直接注册操作
     brls::Button* highlightButton = (brls::Button*)this->getView("button_highlight");
     highlightButton->registerAction(
         "Honk", brls::BUTTON_A, [](brls::View* view) { return true; }, false, false, brls::SOUND_HONK);
@@ -59,6 +59,6 @@ bool ComponentsTab::onPrimaryButtonClicked(brls::View* view)
 
 brls::View* ComponentsTab::create()
 {
-    // Called by the XML engine to create a new ComponentsTab
+    // XML 引擎调用此方法创建 ComponentsTab
     return new ComponentsTab();
 }

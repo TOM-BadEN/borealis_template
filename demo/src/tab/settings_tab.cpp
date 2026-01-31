@@ -16,7 +16,7 @@
 
 #include "tab/settings_tab.hpp"
 
-using namespace brls::literals;  // for _i18n
+using namespace brls::literals;  // 用于 _i18n 国际化
 
 bool radioSelected = false;
 
@@ -34,7 +34,7 @@ static std::vector<std::string> NOTIFICATIONS = {
 
 SettingsTab::SettingsTab()
 {
-    // Inflate the tab from the XML file
+    // 从 XML 文件加载 Tab 布局
     this->inflateFromXMLRes("xml/tabs/settings.xml");
 
     radio->title->setText("Radio cell");

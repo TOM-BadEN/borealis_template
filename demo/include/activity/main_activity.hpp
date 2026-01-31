@@ -21,6 +21,6 @@
 class MainActivity : public brls::Activity
 {
   public:
-    // Declare that the content of this activity is the given XML file
+    // 声明此 Activity 的内容来自指定的 XML 文件
     CONTENT_FROM_XML_RES("activity/main.xml");
 };
