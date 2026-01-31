@@ -3,8 +3,9 @@
 基于 [xfangfang-borealis 模板](https://github.com/xfangfang/borealis_template) 精简的 Nintendo Switch 专用模板。
 
 主要改动：
-- 删除了非 Switch 平台的代码和配置
-- 使用 Makefile 包装编译指令
+- 删除了非 Switch 平台的文件
+- 精简了 CMake 中非 Switch 平台的代码
+- 使用 Makefile 封装 CMake + Ninja 编译命令
 
 ## 项目结构
 
@@ -13,27 +14,18 @@ borealis_template/
 ├── CMakeLists.txt      # CMake 构建配置
 ├── Makefile            # 编译脚本
 ├── demo/               # 模板源代码
-│   ├── include/        # 头文件
-│   │   ├── activity/   # Activity 定义
-│   │   ├── tab/        # Tab 页面定义
-│   │   └── view/       # 自定义视图定义
-│   └── src/            # 源文件
-│       ├── activity/   # Activity 实现
-│       ├── tab/        # Tab 页面实现
-│       ├── view/       # 自定义视图实现
-│       └── main.cpp    # 程序入口
 ├── resources/          # 资源文件
 │   ├── i18n/           # 国际化文本
 │   ├── img/            # 图片资源
-│   ├── xml/            # UI 布局文件
-│   │   ├── activity/   # Activity 布局
-│   │   ├── tabs/       # Tab 页面布局
-│   │   └── views/      # 视图布局
-│   └── font/           # 字体 (仅 PC 调试用，Switch 使用系统字体)
+│   ├── material/       # Material 图标字体
+│   ├── shaders/        # deko3d 着色器
+│   └── xml/            # UI 布局文件
 └── library/            # Borealis 库 (子模块)
 ```
 
 ## 编译
+
+> **注意**：需要先安装 Ninja：`pacman -S ninja`
 
 ```bash
 # deko3d 渲染器 (默认，性能更好)
