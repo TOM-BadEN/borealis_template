@@ -34,6 +34,9 @@ set(PROJECT_AUTHOR "borealis")               # 作者名 (显示在 Switch 主�
 set(PROJECT_ICON ${CMAKE_CURRENT_SOURCE_DIR}/resources/img/demo_icon.jpg)  # Switch 图标 (256x256 JPG)
 set(PROJECT_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources)               # 资源目录
 
+# GCC 彩色错误输出
+add_compile_options(-fdiagnostics-color=always)
+
 # 添加 Borealis 库子目录
 add_subdirectory(library)
 
